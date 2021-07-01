@@ -64,7 +64,8 @@ typedef NS_ENUM(NSUInteger, LogLevel) {
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
    if (self.centralManager == nil) {
-     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+     NSDictionary *options = @{CBCentralManagerOptionShowPowerAlertKey: @NO};
+     self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:options];
    }
   if ([@"setLogLevel" isEqualToString:call.method]) {
     NSNumber *logLevelIndex = [call arguments];
